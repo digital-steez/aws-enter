@@ -6,7 +6,7 @@
     var AWS = require('aws-sdk');
     var fs = require('fs');
     var _ = require('underscore');
-    
+    var path = require('path'); 
     // Set up options
     var opts = require("nomnom").option('name', {
         abbr: 'n', 
@@ -14,8 +14,7 @@
     }).parse();
     
     // Load config file
-    var config = JSON.parse(fs.readFileSync('config.json', { encoding: "ascii" }) || null);
-    
+    var config = JSON.parse(fs.readFileSync(path.join(process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'], '.awsenter'), { encoding: "ascii" }) || null); 
     // Main logic
     var app = {
         run: function (o) {
