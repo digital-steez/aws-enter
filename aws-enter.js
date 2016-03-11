@@ -51,18 +51,18 @@
                     // Grab a list of all the hosts' private IP addresses, public IP addresses, and tags. 
                     // This can be easily expanded to support multiple IP output, searching by multiple tags and/or multiple tag values, etc.
                     var hosts = _.unique(
-                            _.flatten(
-                                _.map(query.Reservations, function (reservation) {
-                                    return _.map(reservation.Instances, function (instance) {
-                                        return { 
-                                            PublicIpAddress: instance.PublicIpAddress, 
-                                            PrivateIpAddress: instance.PrivateIpAddress, 
-                                            Tags: instance.Tags
-                                        };
-                                    });
-                                })
-                                )
-                            );
+                        _.flatten(
+                            _.map(query.Reservations, function (reservation) {
+                                return _.map(reservation.Instances, function (instance) {
+                                    return { 
+                                        PublicIpAddress: instance.PublicIpAddress, 
+                                        PrivateIpAddress: instance.PrivateIpAddress, 
+                                        Tags: instance.Tags
+                                    };
+                                });
+                            })
+                        )
+                    );
 
                     // For now, just output the IP address of each result on a line.
                     _.each(hosts, function (host) { 
